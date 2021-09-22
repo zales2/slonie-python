@@ -1,22 +1,22 @@
 import numpy as np
 from numpy import int64
 
-path = input()
+n = int(input()) # liczba słoni
 
-with open(path, 'r') as file:
-    n = int(file.readline()) # liczba słoni
+weight = np.empty(n, dtype=int64)
+pos = np.empty(n, dtype=int64)  # pozycje słoni
+perm = np.empty(n, dtype=int64) #permutacja pozycji słoni
 
-    weight = np.array(file.readline().split(), dtype=int64)
-    minWeight = min(weight) # minimalna waga 
+for i in range(n):
+    weight[i] = int(input())
+minWeight = min(weight) # minimalna waga 
 
-    pos = np.array(file.readline().split(), dtype=int64) # pozycje słoni
-    pos = pos - 1
+for i in range(n):
+    pos[i] = int(input()) - 1
 
-    perm = np.empty(n, dtype=int64) #permutacja pozycji słoni
-    i = 0
-    for number in file.readline().split():
-        perm[ int(number) - 1 ] = pos[i]
-        i += 1
+for i in range(n):
+    number = int(input())
+    perm[ number - 1 ] = pos[i]
 
 boolArray = np.full( n , False ) # czy pozycja w cyklu została już zbadana
 score = 0 # wynik ostateczny
